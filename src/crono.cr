@@ -1,7 +1,7 @@
 require "sdl"
 require "sdl/image"
 require "sdl/ttf"
-require "crono/*"
+require "./crono/*"
 
 
 SDL.init(SDL::Init::VIDEO)
