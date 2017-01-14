@@ -1,16 +1,29 @@
 module Crono
-  class Window
-    property width, height, title
+  abstract class Window
+    property width : Int32
+    property height : Int32 
+    property title : String
     
     def initialize(width, height)
-      self.width = width
-      self.height = height
-      self.title = "Sample"
+      @width = width
+      @height = height
+      @title = "Sample"
     end
 
     def show
-      @window = SDL::Window.new(title, width, height)
+      sdl_window = SDL::Window.new(title, width, height)
+      loop do
+        case event = SDL::Event.wait
+        when SDL::Event::Quit
+          break
+        end
+
+        update
+        sdl_window.update
+      end
     end
+
+    abstract def update
 
   end
 end
