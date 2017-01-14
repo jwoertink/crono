@@ -2,6 +2,8 @@
 
 Crono is (going to be) a 2d video game framework.
 
+**NOTE** Under development still
+
 ## Installation
 
 Include in your `shard.yml`
@@ -15,7 +17,15 @@ dependencies:
 
 ## Usage
 
-TODO: Write usage instructions here
+```crystal
+require "crono"
+
+class MyGameWindow < Crono::Window
+  
+end
+
+MyGameWindow.new(640, 480).show
+```
 
 ## Development
 
