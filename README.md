@@ -22,14 +22,20 @@ require "crono"
 
 class MyGameWindow < Crono::Window
   
+  def update
+    background_color = Crono::Color.darken(Crono::Color::BLUE, 30)
+    brush.draw(background_color)
+  end
 end
 
-MyGameWindow.new(640, 480).show
+new_game = MyGameWindow.new(640, 480)
+new_game.title = "My Super cool game"
+new_game.show
 ```
 
 ## Development
 
-TODO: Write development instructions here
+Help me understand SDL, and write some specs.
 
 ## Contributing
 
