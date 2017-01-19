@@ -5,7 +5,7 @@ module Crono
     property height : Int32 
     property title : String
 
-    @sdl_window : SDL::Window
+    @sdl_window : SDL::Window?
     
     def initialize(width, height)
       @width = width
@@ -14,7 +14,7 @@ module Crono
     end
 
     def show
-      @sdl_window = init_sdl!
+      init_sdl!
       loop do
         case event = SDL::Event.wait
         when SDL::Event::Quit
@@ -22,20 +22,19 @@ module Crono
         end
 
         update
-        @sdl_window.update
+        sdl.update
       end
     end
  
     abstract def update
 
     def sdl
-      @sdl_window
+      @sdl_window.not_nil!
     end
 
     private def init_sdl!
-      window = SDL::Window.new(title, width, height)
-      Crono.renderer = Crono::Renderer.new(window)
-      window
+      @sdl_window = SDL::Window.new(title, width, height)
+      Crono.renderer = Crono::Renderer.new(@sdl_window.not_nil!)
     end
 
   end

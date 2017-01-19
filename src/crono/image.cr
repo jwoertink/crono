@@ -5,7 +5,7 @@ module Crono
     property src, dimentions
 
     def initialize(@src : String, @dimentions : TSize)
-      @sdl_img = IMG.load(@src, Crono.renderer.not_nil!.@renderer)
+      @sdl_img = IMG.load(@src, Crono.renderer.not_nil!.sdl)
     end
 
     def width

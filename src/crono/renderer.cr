@@ -11,16 +11,16 @@ module Crono
     end
 
     def draw(color : Color::TColor)
-      @sdl_renderer.draw_color = color
+      sdl.draw_color = color
       # Not sure what these are for, but it works with them...
-      @sdl_renderer.clear
-      @sdl_renderer.present
+      sdl.clear
+      sdl.present
     end
 
     def draw(image : Image, location : Tuple(Int32, Int32, Int32))
-      @sdl_renderer.viewport = {location[0], location[1], image.width, image.height}
-      @sdl_renderer.copy(image.data)
-      @sdl_renderer.present
+      sdl.viewport = {location[0], location[1], image.width, image.height}
+      sdl.copy(image.sdl)
+      sdl.present
     end
   end
 end
