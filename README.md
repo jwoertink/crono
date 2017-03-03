@@ -26,6 +26,21 @@ class MyGameWindow < Crono::Window
     background_color = Crono::Color.darken(Crono::Color::BLUE, 30)
     brush.draw(background_color)
   end
+
+  def key_pressed(key)
+    case key
+    when .escape?
+      close
+    when .w?
+      puts "move forward"
+    when .a?
+      puts "move left"
+    when .s?
+      puts "move back"
+    when .d?
+      puts "move right"
+    end
+  end
 end
 
 new_game = MyGameWindow.new(640, 480)
