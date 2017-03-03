@@ -11,6 +11,7 @@ module Crono
       @width = width
       @height = height
       @title = "Sample"
+      @close_window = false
     end
 
     def show
@@ -19,14 +20,32 @@ module Crono
         case event = SDL::Event.wait
         when SDL::Event::Quit
           break
+        when SDL::Event::Keyboard
+          key_pressed(event.sym) if event.pressed?
+          key_down(event.sym) if event.keydown?
+          key_up(event.sym) if event.keyup?
         end
 
         update
         sdl.update
+        break if @close_window
       end
+    end
+
+    def close
+      @close_window = true
     end
  
     abstract def update
+    
+    def key_pressed(key)
+    end
+
+    def key_down(key)
+    end
+
+    def key_up(key)
+    end
 
     def sdl
       @sdl_window.not_nil!
