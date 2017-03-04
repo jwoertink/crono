@@ -10,11 +10,14 @@ module Crono
       @sdl_renderer
     end
 
-    def draw(color : Color::TColor)
+    def color=(color)
       sdl.draw_color = color
-      # Not sure what these are for, but it works with them...
       sdl.clear
-      sdl.present
+      color
+    end
+
+    def color
+      sdl.draw_color
     end
 
     def draw(image : Image, location : Tuple(Int32, Int32, Int32))
