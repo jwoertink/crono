@@ -2,5 +2,5 @@ version: 1.0
 shards:
   sdl:
     github: ysbaddaden/sdl.cr
-    commit: c7a46c6607f30ab0352f2df9116e21129ad8ea23
+    commit: b04dfac8fbec323e27d2da56882ca836f6688baf
 
