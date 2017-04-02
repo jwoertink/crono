@@ -23,8 +23,8 @@ module Crono
 
     private def init_sdl_img
       ext = File.extname(@src)[1..-1]
-      IMG.init(IMG::Init.parse(ext))
-      IMG.load(@src, Crono.renderer.not_nil!.sdl)
+      SDL::IMG.init(SDL::IMG::Init.parse(ext))
+      SDL::IMG.load(@src, Crono.renderer.not_nil!.sdl)
     end
   end
 end
