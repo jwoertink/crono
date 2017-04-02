@@ -6,7 +6,7 @@ require "./crono/*"
 
 SDL.init(SDL::Init::VIDEO)
 at_exit { SDL.quit }
-at_exit { IMG.quit }
+at_exit { SDL::IMG.quit }
 
 module Crono
   @@renderer : Crono::Renderer?
