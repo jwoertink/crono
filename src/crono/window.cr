@@ -16,6 +16,7 @@ module Crono
 
     def show
       init_sdl!
+      after_init
       loop do
         case event = SDL::Event.wait
         when SDL::Event::Quit
@@ -30,6 +31,9 @@ module Crono
         sdl.update
         break if @close_window
       end
+    end
+
+    def after_init
     end
 
     def close
@@ -53,7 +57,7 @@ module Crono
 
     private def init_sdl!
       @sdl_window = SDL::Window.new(title, width, height)
-      Crono.renderer = Crono::Renderer.new(@sdl_window.not_nil!)
+      Crono.renderer = Crono::Renderer.new(sdl)
     end
 
   end
