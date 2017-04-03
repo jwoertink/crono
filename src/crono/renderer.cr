@@ -20,10 +20,14 @@ module Crono
       sdl.draw_color
     end
 
-    def draw(image : Image, location : Tuple(Int32, Int32, Int32))
+    def draw(image : Image, location : Tuple(Int32, Int32))
       sdl.viewport = {location[0], location[1], image.width, image.height}
       sdl.copy(image.sdl)
-      sdl.present
+    end
+
+    def draw(font : Font, location : Tuple(Int32, Int32))
+      surface = font.draw
+      sdl.copy(surface, dstrect: {location[0], location[1], surface.width, surface.height})
     end
   end
 end

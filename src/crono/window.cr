@@ -28,6 +28,7 @@ module Crono
         end
 
         update
+        Crono.renderer.sdl.present
         sdl.update
         break if @close_window
       end
