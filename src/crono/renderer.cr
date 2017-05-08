@@ -1,6 +1,7 @@
 module Crono
   class Renderer
     @sdl_renderer : SDL::Renderer
+    delegate clear, to: @sdl_renderer
 
     def initialize(window : SDL::Window)
       @sdl_renderer = SDL::Renderer.new(window)
