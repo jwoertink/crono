@@ -4,8 +4,20 @@ module Crono
     @sdl_img : SDL::Texture
     property src, dimentions
 
+    # May need to implement SDL_CreateTextureFromSurface for this to work
+    def self.load_tiles(src : String, dimentions : TSize)
+      #img = new(src)
+      #Crono.renderer.sdl.copy(img.sdl, srcrect: {0, 0, 200, 50}, dstrect: {0, 0, 50, 50})
+      #SDL::Surface.load_texture(Crono.renderer.sdl, img.sdl)
+    end
+
     def initialize(@src : String, @dimentions : TSize)
       @sdl_img = init_sdl_img
+    end
+
+    def initialize(@src : String)
+      @sdl_img = init_sdl_img
+      @dimentions = {1,1}
     end
 
     def width
