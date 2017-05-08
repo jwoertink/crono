@@ -18,7 +18,7 @@ module Crono
       init_sdl!
       after_init
       loop do
-        case event = SDL::Event.wait
+        case event = SDL::Event.poll
         when SDL::Event::Quit
           break
         when SDL::Event::Keyboard
@@ -26,10 +26,12 @@ module Crono
           key_down(event.sym) if event.keydown?
           key_up(event.sym) if event.keyup?
         end
-
+        
+        Crono.renderer.clear
+        draw
         update
         Crono.renderer.sdl.present
-        sdl.update
+        #sdl.update # Do I need this?
         break if @close_window
       end
     end
@@ -42,6 +44,7 @@ module Crono
     end
  
     abstract def update
+    abstract def draw
     
     def key_pressed(key)
     end
