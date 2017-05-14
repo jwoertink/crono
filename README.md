@@ -48,6 +48,8 @@ new_game.title = "My Super cool game"
 new_game.show
 ```
 
+Check out some [Sample Games](https://github.com/jwoertink/crono-samples)
+
 ## Development
 
 Help me understand SDL, and write some specs.
