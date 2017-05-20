@@ -15,6 +15,20 @@ dependencies:
     branch: master
 ```
 
+Be sure to have SDL2 installed!
+
+### macOS
+
+```
+brew install sdl2
+brew install sdl2_image
+brew install sdl2_ttf
+brew install sdl2_mixer --with-flac --with-fluid-synth --with-libmikmod --with-libmodplug --with-libvorbis --with-smpeg2
+```
+
+### Linux Debian
+
+
 ## Usage
 
 ```crystal
