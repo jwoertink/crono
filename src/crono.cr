@@ -11,6 +11,7 @@ at_exit { SDL::IMG.quit }
 at_exit { SDL::TTF.quit }
 
 module Crono
+  extend GameMath
   @@renderer : Crono::Renderer?
 
   def self.renderer
