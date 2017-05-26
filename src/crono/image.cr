@@ -38,8 +38,12 @@ module Crono
       #NOTE: If loading a .bmp, should it be init somehow?
       if ["jpg", "png", "tif"].includes?(ext)
         SDL::IMG.init(SDL::IMG::Init.parse(ext))
+        SDL::IMG.load(@src, Crono.renderer.not_nil!.sdl)
+      else
+        bmp = SDL.load_bmp(@src)
+        bmp.color_key = {255, 0, 255}
+        SDL::Texture.from(bmp, Crono.renderer.sdl)
       end
-      SDL::IMG.load(@src, Crono.renderer.not_nil!.sdl)
     end
   end
 end
