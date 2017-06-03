@@ -1,26 +1,28 @@
 module Crono
   class Image
     alias TSize = Tuple(Int32, Int32)
+    alias Sprite = NamedTuple(image: SDL::Texture, clip: Tuple(Int32, Int32, Int32, Int32))
+    alias Tiles = Array(Sprite)
     @sdl_img : SDL::Texture
     property src, dimentions
 
+    # Returns Array(NamedTuple)
+    # The total number of sprites would be 
+    # (img.width / dimentions[0]) * (img.height / dimentions[1])
     def self.load_tiles(src : String, dimentions : TSize)
-      img = self.new(src, dimentions)
-      sprite = SDL::Texture.from(img, Crono.renderer.not_nil!.sdl)
-      # img.width, img.height
-      # have the sprite size by dimentions[0] and dimentions[1]
-      # need to calculate how many sprites can be pulled from this size
-      # if the img is 200x25 and the dimentions are {25, 25}
-      # then the total amount of sprites would be 8
-      # (width / d[0]) * (height / d[1])
-      # (200   / 25)   * (25     / 25)
-      # What happens if the image is a wonky size like 326x48
-      # (326 / 25)13.04 * (48 / 25)1.92 = 25.036....
-      # If we floor the values it would be 13. That's a big difference
-      # We need this to return some sort of collection. It should have the img and
-      # all of the sprite locations which would be a SDL::Rect
-      # Maybe use it like this?
-      # render.copy(sprite[0].image, sprite[0].clip, location_to_draw)
+      sprite = self.new(src, dimentions)
+      #sprite = SDL::Texture.from(img.sdl.as(SDL::Surface), Crono.renderer.not_nil!.sdl)
+      sprites = [] of Sprite 
+      cols = (sprite.width / dimentions[0]).floor
+      rows = (sprite.height / dimentions[1]).floor
+      cols.times do |c|
+        rows.times do |r|
+          x = c * dimentions[0]
+          y = r * dimentions[1]
+          sprites.push({image: sprite.sdl, clip: {x, y, dimentions[0], dimentions[1]}})
+        end
+      end
+      sprites
     end
 
     def initialize(@src : String, @dimentions : TSize)
