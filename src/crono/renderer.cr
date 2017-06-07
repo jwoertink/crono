@@ -41,7 +41,7 @@ module Crono
       @animation_counter = 0_u16 if @animation_counter >= count
       sprite = image_sprites[@animation_counter]
       image = sprite[:image]
-      sdl.copy(image, sprite[:clip], {location[0], location[1], image.width, image.height})
+      sdl.copy(image, sprite[:clip], {location[0], location[1], sprite[:clip][2], sprite[:clip][3]})
       @animation_counter += 1
     end
   end

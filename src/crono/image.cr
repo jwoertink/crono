@@ -8,13 +8,12 @@ module Crono
 
     # Returns Array(NamedTuple)
     # The total number of sprites would be 
-    # (img.width / dimentions[0]) * (img.height / dimentions[1])
+    # (img.full_width / dimentions[0]) * (img.full_height / dimentions[1])
     def self.load_tiles(src : String, dimentions : TSize)
       sprite = self.new(src, dimentions)
-      #sprite = SDL::Texture.from(img.sdl.as(SDL::Surface), Crono.renderer.not_nil!.sdl)
       sprites = [] of Sprite 
-      cols = (sprite.width / dimentions[0]).floor
-      rows = (sprite.height / dimentions[1]).floor
+      cols = (sprite.full_width / dimentions[0]).floor
+      rows = (sprite.full_height / dimentions[1]).floor
       cols.times do |c|
         rows.times do |r|
           x = c * dimentions[0]
@@ -34,12 +33,24 @@ module Crono
       @dimentions = {1,1}
     end
 
+    # returns the width you want
     def width
       @dimentions[0]?
     end
 
+    # returns the full width of the image
+    def full_width
+      sdl.width
+    end
+
+    # returns the height you want
     def height
       @dimentions[1]?
+    end
+
+    # returns the full height of the image
+    def full_height
+      sdl.height
     end
 
     # TODO: find a better name for this proxy method
