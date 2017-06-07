@@ -26,9 +26,15 @@ module Crono
           key_down(event.sym) if event.keydown?
           key_up(event.sym) if event.keyup?
         end
-        
+       
+        # I think maybe we need 2 separate threads here
+        # We could use a Mutex to syncronize them
+        # Allow draw to run 60x a second,
+        # and update could run as fast as it needs
+        # That might help with the choppy animation 
         Crono.renderer.clear
         draw
+        sleep 0.0166
         update
         Crono.renderer.sdl.present
         #sdl.update # Do I need this?
