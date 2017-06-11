@@ -17,32 +17,14 @@ module Crono
     def show
       init_sdl!
       after_init
-      loop do
-        case event = SDL::Event.poll
-        when SDL::Event::Quit
-          break
-        when SDL::Event::Keyboard
-          key_pressed(event.sym) if event.pressed?
-          key_down(event.sym) if event.keydown?
-          key_up(event.sym) if event.keyup?
-        end
-       
-        # I think maybe we need 2 separate threads here
-        # We could use a Mutex to syncronize them
-        # Allow draw to run 60x a second,
-        # and update could run as fast as it needs
-        # That might help with the choppy animation 
-        Crono.renderer.clear
-        draw
-        sleep 0.0166
-        update
-        Crono.renderer.sdl.present
-        #sdl.update # Do I need this?
-        break if @close_window
-      end
+      run_game_loop
     end
 
     def after_init
+    end
+
+    def clear_screen
+      Crono.renderer.clear
     end
 
     def close
@@ -68,6 +50,58 @@ module Crono
     private def init_sdl!
       @sdl_window = SDL::Window.new(title, width, height)
       Crono.renderer = Crono::Renderer.new(sdl)
+    end
+
+    private def current_time
+      Time.now.epoch_ms
+    end
+
+    private def run_game_loop
+      update_interval = 120
+      draw_interval = 60
+      time_of_last_update = current_time
+      time_of_last_draw = current_time
+      loop do
+        case event = SDL::Event.poll
+        when SDL::Event::Quit
+          break
+        when SDL::Event::Keyboard
+          key_pressed(event.sym) if event.pressed?
+          key_down(event.sym) if event.keydown?
+          key_up(event.sym) if event.keyup?
+        end
+
+        time_until_update = (update_interval + time_of_last_update) - current_time
+        time_until_draw = (draw_interval + time_of_last_draw) - current_time
+        work_done = false
+
+        if time_until_update <= 0
+          update
+          #sdl.update # Do I need this?
+          Crono.renderer.sdl.present
+          time_of_last_update = current_time
+          work_done = true
+        end
+
+        if time_until_draw <= 0
+          clear_screen
+          draw
+          time_of_last_draw = current_time
+          work_done = true
+        end
+
+        if work_done == false
+          sleep_seconds = time_until_update
+
+          if time_until_draw < sleep_seconds
+            sleep_seconds = time_until_draw
+          end
+          time_to_sleep = sleep_seconds * 0.001
+          sleep(time_to_sleep)
+        end
+       
+        break if @close_window
+      end
     end
 
   end
