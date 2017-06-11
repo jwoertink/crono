@@ -1,7 +1,7 @@
 module Crono
   class Font
     property text : String
-    property color : Crono::Color::TColor
+    property color : Crono::Color::RGBA
     
     def initialize(@path : String, @font_size : Int32)
       @text = ""
