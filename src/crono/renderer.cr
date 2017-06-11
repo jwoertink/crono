@@ -24,7 +24,7 @@ module Crono
     end
 
     # Draws an image
-    def draw(image : Image, location : Tuple(Int32, Int32), angle : Int32 = 0)
+    def draw(image : Image, location : Tuple(Int32, Int32), angle = 0)
       #sdl.viewport = {location[0], location[1], image.width, image.height}
       sdl.copy(image.sdl, nil, {location[0], location[1], image.width, image.height}, angle)
     end
