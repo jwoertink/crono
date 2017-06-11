@@ -1,11 +1,11 @@
 module Crono
   module GameMath
     
-    def offset_x(angle : Int32, radius : Float64)
+    def offset_x(angle : Float64, radius : Float64)
       Math.sin(angle / 180 * Math::PI) * radius
     end
 
-    def offset_y(angle : Int32, radius : Float64)
+    def offset_y(angle : Float64, radius : Float64)
       -Math.cos(angle / 180 * Math::PI) * radius 
     end
 
