@@ -1,9 +1,9 @@
 module Crono
   struct Color
     # R, G, B, A
-    WHITE = {255, 255, 255, 255}
-    GRAY = {128, 128, 128, 255}
-    BLACK = {0, 0, 0, 255}
+    WHITE = SDL::Color[255]
+    GRAY = SDL::Color[128]
+    BLACK = SDL::Color[0]
     RED = {255, 0, 0, 255}
     ORANGE = {255, 171, 0, 255}
     YELLOW = {255, 255, 0, 255}
@@ -17,7 +17,7 @@ module Crono
     MAGENTA = {255, 0, 255, 255}
     PINK = {255, 0, 171, 255}
   
-    alias RGBA = Tuple(Int32, Int32, Int32, Int32)
+    alias RGBA = SDL::Color
     alias RGB = Tuple(Int32, Int32, Int32)
 
     def self.to_hex(values : RGB) 
@@ -50,6 +50,10 @@ module Crono
 
     def self.rand
       RGB.from([rand(256), rand(256), rand(256)])
+    end
+
+    macro [](r, g, b, a = 255)
+      SDL::Color[{{r}}, {{g}}, {{b}}, {{a}}]
     end
   end
 end

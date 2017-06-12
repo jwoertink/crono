@@ -18,7 +18,7 @@ module Crono
         rows.times do |r|
           x = c * dimentions[0]
           y = r * dimentions[1]
-          sprites.push({image: sprite.sdl, clip: {x, y, dimentions[0], dimentions[1]}})
+          sprites.push({image: sprite.sdl, clip: SDL::Rect[x, y, dimentions[0], dimentions[1]]})
         end
       end
       sprites

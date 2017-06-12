@@ -26,13 +26,13 @@ module Crono
     # Draws an image
     def draw(image : Image, location : Tuple(Int32, Int32), angle = 0)
       #sdl.viewport = {location[0], location[1], image.width, image.height}
-      sdl.copy(image.sdl, nil, {location[0], location[1], image.width, image.height}, angle)
+      sdl.copy(image.sdl, nil, SDL::Rect[location[0], location[1], image.width, image.height], angle)
     end
 
     # Draws some text
     def draw(font : Font, location : Tuple(Int32, Int32))
       surface = font.draw
-      sdl.copy(surface, dstrect: {location[0], location[1], surface.width, surface.height})
+      sdl.copy(surface, dstrect: SDL::Rect[location[0], location[1], surface.width, surface.height])
     end
 
     # Draws an image for the current animation
@@ -41,7 +41,7 @@ module Crono
       @animation_counter = 0_u16 if @animation_counter >= count
       sprite = image_sprites[@animation_counter]
       image = sprite[:image]
-      sdl.copy(image, sprite[:clip], {location[0], location[1], sprite[:clip][2], sprite[:clip][3]})
+      sdl.copy(image, sprite[:clip], SDL::Rect[location[0], location[1], sprite[:clip][2], sprite[:clip][3]])
       @animation_counter += 1
     end
   end
