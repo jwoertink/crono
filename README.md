@@ -35,10 +35,22 @@ brew install sdl2_mixer --with-flac --with-fluid-synth --with-libmikmod --with-l
 require "crono"
 
 class MyGameWindow < Crono::Window
+  @main_text : Crono::Font?
   
+  def after_init
+    font_path = File.join(__DIR__, "assets", "fonts", "lobster.ttf")
+    @main_text = Crono::Font.new(font_path, 18)
+    @main_text.color = Crono::Color::YELLOW
+    @main_text.text = "Hello GameWorld"
+  end
+
   def update
-    background_color = Crono::Color.darken(Crono::Color::BLUE, 30)
-    brush.draw(background_color)
+    @main_text.text = "Hello GameWorld #{Time.now}"
+  end
+
+  def draw
+    brush.draw(background_color, {0, 0})
+    brush.draw(@main_text, {100, 75})
   end
 
   def key_pressed(key)
@@ -54,6 +66,10 @@ class MyGameWindow < Crono::Window
     when .d?
       puts "move right"
     end
+  end
+
+  private def background_color
+    Crono::Color.darken(Crono::Color::BLUE, 30)
   end
 end
 
