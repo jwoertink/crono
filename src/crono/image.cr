@@ -1,7 +1,7 @@
 module Crono
   class Image
     alias TSize = Tuple(Int32, Int32)
-    alias Sprite = NamedTuple(image: SDL::Texture, clip: Tuple(Int32, Int32, Int32, Int32))
+    alias Sprite = NamedTuple(image: SDL::Texture, clip: SDL::Rect)
     alias Tiles = Array(Sprite)
     @sdl_img : SDL::Texture
     property src, dimentions
