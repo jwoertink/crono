@@ -1,8 +1,10 @@
-# crono
+![crono](logo.gif) crono
 
-Crono is (going to be) a 2d video game framework.
+Crono is a 2d video game framework based around SDL2.
 
-**NOTE** Under development still
+**NOTE** Still under development, but games can be sort of played now
+
+The major part holding this back is animation is super choppy still. 
 
 ## Installation
 
