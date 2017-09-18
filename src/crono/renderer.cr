@@ -1,7 +1,7 @@
 module Crono
   class Renderer
     @sdl_renderer : SDL::Renderer
-    delegate clear, to: @sdl_renderer
+    delegate clear, present, to: @sdl_renderer
     property animation_counter : UInt16
 
     def initialize(window : SDL::Window)
@@ -15,7 +15,6 @@ module Crono
 
     def color=(color)
       sdl.draw_color = color
-      sdl.clear
       color
     end
 
