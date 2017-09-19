@@ -48,7 +48,7 @@ module Crono
     end
 
     def handle_event(event)
-      key_pressed(event.sym) if event.pressed?
+      key_pressed(event.sym) if event.pressed? && event.repeat == 0
       key_down(event.sym) if event.keydown?
       key_up(event.sym) if event.keyup?
     end
@@ -75,6 +75,7 @@ module Crono
         clear_screen
         draw
         Crono.renderer.present
+        break if @close_window
       end
     end
 
