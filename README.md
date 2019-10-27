@@ -1,4 +1,4 @@
-# ![crono](logo.gif) crono
+# ![crono](logo.gif) crono [![Build Status](https://travis-ci.com/jwoertink/crono.svg?branch=master)](https://travis-ci.com/jwoertink/crono)
 
 Crono is a 2d video game framework based around SDL2.
 
