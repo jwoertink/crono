@@ -26,7 +26,7 @@ module Crono
   def self.boot(code : GameLoader, config : GameConfig)
     window = SDL::Window.new(config.title, config.width, config.height)
     renderer = SDL::Renderer.new(window)
-    LUA.set_global "crono", Crono::Util.new
+    LUA.set_global "crono", Crono::Util.new(renderer)
 
     LUA.run File.new(Path[code.path.normalize, "main.lua"])
 
@@ -35,11 +35,12 @@ module Crono
       when SDL::Event::Quit
         break
       end
+      renderer.draw_color = Color::BLACK
+      renderer.clear
 
-      LUA.run <<-CODE
-      draw()
-      update()
-      CODE
+      LUA.run "draw()"
+      LUA.run "update()"
+      renderer.present
     end
   end
 end

@@ -20,6 +20,17 @@ module Crono
     alias RGBA = SDL::Color
     alias RGB = Tuple(Int32, Int32, Int32)
 
+    def self.from_name(name : String)
+      case name.upcase
+      when "WHITE" then WHITE
+      when "GRAY" then GRAY
+      when "RED" then RED
+      when "ORANGE" then ORANGE
+      else
+        BLACK
+      end
+    end
+
     def self.to_hex(values : RGB)
       to_hex({values[0], values[1], values[2], 255})
     end
