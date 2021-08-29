@@ -1,26 +1,26 @@
 module Crono
   struct Color
     # R, G, B, A
-    WHITE = SDL::Color[255]
-    GRAY = SDL::Color[128]
-    BLACK = SDL::Color[0]
-    RED = SDL::Color[255, 0, 0]
-    ORANGE = SDL::Color[255, 171, 0]
-    YELLOW = SDL::Color[255, 255, 0]
-    LIME = SDL::Color[171, 255, 0]
-    GREEN = SDL::Color[0, 255, 0]
-    SPRING = SDL::Color[0, 255, 171]
-    CYAN = SDL::Color[0, 255, 255]
-    DODGER = SDL::Color[0, 171, 255]
-    BLUE = SDL::Color[0, 0, 255]
-    PURPLE = SDL::Color[171, 0, 171]
+    WHITE   = SDL::Color[255]
+    GRAY    = SDL::Color[128]
+    BLACK   = SDL::Color[0]
+    RED     = SDL::Color[255, 0, 0]
+    ORANGE  = SDL::Color[255, 171, 0]
+    YELLOW  = SDL::Color[255, 255, 0]
+    LIME    = SDL::Color[171, 255, 0]
+    GREEN   = SDL::Color[0, 255, 0]
+    SPRING  = SDL::Color[0, 255, 171]
+    CYAN    = SDL::Color[0, 255, 255]
+    DODGER  = SDL::Color[0, 171, 255]
+    BLUE    = SDL::Color[0, 0, 255]
+    PURPLE  = SDL::Color[171, 0, 171]
     MAGENTA = SDL::Color[255, 0, 255]
-    PINK = SDL::Color[255, 0, 171]
-  
+    PINK    = SDL::Color[255, 0, 171]
+
     alias RGBA = SDL::Color
     alias RGB = Tuple(Int32, Int32, Int32)
 
-    def self.to_hex(values : RGB) 
+    def self.to_hex(values : RGB)
       to_hex({values[0], values[1], values[2], 255})
     end
 

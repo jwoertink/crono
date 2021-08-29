@@ -1,6 +1,10 @@
-version: 1.0
+version: 2.0
 shards:
+  ameba:
+    git: https://github.com/crystal-ameba/ameba.git
+    version: 0.14.3
+
   sdl:
-    github: ysbaddaden/sdl.cr
-    commit: d40de3177809ac2f71b5980632b422565eb0a3b4
+    git: https://github.com/ysbaddaden/sdl.cr.git
+    version: 0.1.0+git.commit.d40de3177809ac2f71b5980632b422565eb0a3b4
 

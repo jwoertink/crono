@@ -8,7 +8,7 @@ targets:
   crono:
     main: src/crono.cr
 
-crystal: 0.21.1
+crystal: ">= 1.0.0"
 
 license: MIT
 
@@ -16,3 +16,7 @@ dependencies:
   sdl:
     github: ysbaddaden/sdl.cr
     branch: master
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
