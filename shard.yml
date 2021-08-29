@@ -16,6 +16,9 @@ dependencies:
   sdl:
     github: ysbaddaden/sdl.cr
     branch: master
+  lua:
+    github: veelenga/lua.cr
+    branch: master
 
 development_dependencies:
   ameba:

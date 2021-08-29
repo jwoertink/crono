@@ -4,6 +4,10 @@ shards:
     git: https://github.com/crystal-ameba/ameba.git
     version: 0.14.3
 
+  lua:
+    git: https://github.com/veelenga/lua.cr.git
+    version: 0.2.0+git.commit.3cac9be911248a60e79d3021104e3bd6fe427b9c
+
   sdl:
     git: https://github.com/ysbaddaden/sdl.cr.git
     version: 0.1.0+git.commit.d40de3177809ac2f71b5980632b422565eb0a3b4

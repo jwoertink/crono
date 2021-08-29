@@ -1,4 +1,6 @@
 module Crono
-  abstract class Window
+  class Window
+
+
   end
 end
